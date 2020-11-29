@@ -8,7 +8,7 @@ ARG PACKER_VERSION=1.6.5
 ARG TFLINT_VERSION=0.17.0
 ARG TFSEC_VERSION=0.21.0
 
-ENV TF_PLUGIN_CACHE_DIR=/opt/terraform/plugin-cache
+ENV TF_PLUGIN_CACHE_DIR=/opt/terraform/plugins
 
 RUN \
   apk --no-cache add \
