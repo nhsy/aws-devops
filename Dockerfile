@@ -3,9 +3,9 @@ FROM alpine:latest
 LABEL name=aws-devops
 
 ARG TERRAFORM_VERSION=0.13.5
-ARG TERRAGRUNT_VERSION=0.26.4
+ARG TERRAGRUNT_VERSION=0.26.7
 ARG PACKER_VERSION=1.6.5
-ARG TFLINT_VERSION=0.17.0
+ARG TFLINT_VERSION=0.22.0
 ARG TFSEC_VERSION=0.21.0
 
 ENV TF_PLUGIN_CACHE_DIR=/opt/terraform/plugins
@@ -71,6 +71,7 @@ RUN \
   chmod +x /tmp/packer && \
   mv /tmp/packer /usr/local/bin && \
   \
+  mkdir -p ${TF_PLUGIN_CACHE_DIR}/linux_amd64 && \
   ansible --version && \
   aws --version && \
   kubectl version --client && \
@@ -86,7 +87,6 @@ COPY *.sh /tmp/
 RUN \
   adduser -Ds /bin/bash devops && \
   \
-  mkdir -p ${TF_PLUGIN_CACHE_DIR}/linux_amd64 && \
   . /tmp/10-terraform-providers.sh && \
   chmod -R 777 ${TF_PLUGIN_CACHE_DIR} && \
   \
