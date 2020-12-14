@@ -32,14 +32,14 @@ stages:
         command: 'build'
         arguments: '--build-arg TERRAFORM_VERSION=$(tf_0.12_version)'
         dockerfile: '$(Build.SourcesDirectory)/Dockerfile'
-        tags: 0.12
+        tags: $(tf_0.12_version)
     - task: Docker@2
       displayName: Push
       inputs:
         containerRegistry: $(registry)
         repository: $(repository)
         command: 'push'
-        tags: 0.12
+        tags: $(tf_0.12_version)
 
   - job: Build2
     displayName: Build 0.13.x image
@@ -54,14 +54,14 @@ stages:
         command: 'build'
         arguments: '--build-arg TERRAFORM_VERSION=$(tf_0.13_version)'
         dockerfile: '$(Build.SourcesDirectory)/Dockerfile'
-        tags: 0.13
+        tags: $(tf_0.13_version)
     - task: Docker@2
       displayName: Push
       inputs:
         containerRegistry: $(registry)
         repository: $(repository)
         command: 'push'
-        tags: 0.13
+        tags: $(tf_0.13_version)
 
   - job: Build3
     displayName: Build 0.14.x image
@@ -76,11 +76,11 @@ stages:
         command: 'build'
         arguments: '--build-arg TERRAFORM_VERSION=$(tf_0.14_version)'
         dockerfile: '$(Build.SourcesDirectory)/Dockerfile'
-        tags: 0.14
+        tags: $(tf_0.14_version)
     - task: Docker@2
       displayName: Push
       inputs:
         containerRegistry: $(registry)
         repository: $(repository)
         command: 'push'
-        tags: 0.14
+        tags: $(tf_0.14_version)
